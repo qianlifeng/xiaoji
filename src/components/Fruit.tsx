@@ -1,8 +1,8 @@
-import type { KeyboardEvent, ReactElement } from 'react'
-import { useNavigate } from 'react-router-dom'
-import type { IFruit } from 'types'
-import { useMediaQuery } from 'utils'
-import ImageAttribution from './ImageAttribution'
+import type { KeyboardEvent, ReactElement } from "react"
+import { useNavigate } from "react-router-dom"
+import type { IFruit } from "types"
+import { useMediaQuery } from "utils"
+import ImageAttribution from "./ImageAttribution"
 
 const PREFERRED_IMAGE_WIDTH = 384
 const MOBILE_PADDING = 16
@@ -16,16 +16,17 @@ interface Properties {
 }
 
 export default function Fruit({ fruit, index }: Properties): ReactElement {
-	const isTabletAndUp = useMediaQuery('(min-width: 600px)')
+	const isTabletAndUp = useMediaQuery("(min-width: 600px)")
 
 	const navigate = useNavigate()
+
 	function onClick(): void {
 		window.scrollTo(0, 0)
 		navigate(fruit.name.toLowerCase())
 	}
 
 	function onKeyDown(event: KeyboardEvent): void {
-		if (event.key === 'Enter') {
+		if (event.key === "Enter") {
 			onClick()
 		}
 	}
@@ -50,13 +51,13 @@ export default function Fruit({ fruit, index }: Properties): ReactElement {
 					data-testid='FruitCardImage'
 					loading={
 						!isTabletAndUp && index >= IMAGE_INDEX_BELOW_THE_FOLD
-							? 'lazy'
-							: 'eager'
+							? "lazy"
+							: "eager"
 					}
 					decoding={
 						!isTabletAndUp && index >= IMAGE_INDEX_BELOW_THE_FOLD
-							? 'async'
-							: 'sync'
+							? "async"
+							: "sync"
 					}
 					width={imageWidth}
 					height={imageHeight}
