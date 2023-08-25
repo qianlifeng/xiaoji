@@ -1,20 +1,20 @@
-import getFruits from 'api/getFruits'
-import Head from 'components/Head'
-import ImageAttribution from 'components/ImageAttribution'
-import LoadingOrError from 'components/LoadingOrError'
-import type { ReactElement } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { Link, Navigate, useParams } from 'react-router-dom'
-import { useMediaQuery } from 'utils'
+import getFruits from "api/getFruits"
+import Head from "components/Head"
+import ImageAttribution from "components/ImageAttribution"
+import LoadingOrError from "components/LoadingOrError"
+import type { ReactElement } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { Link, Navigate, useParams } from "react-router-dom"
+import { useMediaQuery } from "utils"
 
 const DESKTOP_IMAGE_WIDTH_PERCENTAGE = 0.4
 const MOBILE_IMAGE_HEIGHT_PERCENTAGE = 0.3
 
 export default function DetailsPage(): ReactElement {
-	const isTabletAndUp = useMediaQuery('(min-width: 600px)')
+	const isTabletAndUp = useMediaQuery("(min-width: 600px)")
 	const { fruitName } = useParams()
 
-	const { isLoading, isError, error, data } = useQuery(['fruits'], getFruits)
+	const { isLoading, isError, error, data } = useQuery(["fruits"], getFruits)
 	if (isLoading || isError) {
 		return <LoadingOrError error={error as Error} />
 	}

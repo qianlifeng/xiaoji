@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from "react"
 
 // eslint-disable-next-line import/prefer-default-export
 export function useMediaQuery(query: string): boolean {
@@ -11,10 +11,10 @@ export function useMediaQuery(query: string): boolean {
 			setMatches(mediaQuery.matches)
 		}
 
-		mediaQuery.addEventListener('change', onMediaQueryChange)
+		mediaQuery.addEventListener("change", onMediaQueryChange)
 
 		return (): void => {
-			mediaQuery.removeEventListener('change', onMediaQueryChange)
+			mediaQuery.removeEventListener("change", onMediaQueryChange)
 		}
 	}, [query])
 

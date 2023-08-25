@@ -1,8 +1,8 @@
-import type { MouseEvent, ReactElement } from 'react'
-import type { IFruit } from 'types'
+import type { MouseEvent, ReactElement } from "react"
+import type { IFruit } from "types"
 
 interface Properties {
-	author: IFruit['image']['author']
+	author: IFruit["image"]["author"]
 }
 
 function onClick(event: MouseEvent): void {
