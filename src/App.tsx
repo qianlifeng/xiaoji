@@ -1,20 +1,45 @@
-import LoadingOrError from "components/LoadingOrError"
 import type { ReactElement } from "react"
-import { lazy, Suspense } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { TabBar } from "antd-mobile"
+import { AppOutline, BankcardOutline, HistogramOutline, SetOutline } from "antd-mobile-icons"
+import Home from "./pages/Home"
+import Statistics from "./pages/Statistics"
+import Asset from "./pages/Asset"
+import Setting from "./pages/Setting"
 
-const Gallery = lazy(async () => import("pages/Gallery"))
-const Details = lazy(async () => import("pages/Details"))
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Home />
+	},
+	{
+		path: "/home",
+		element: <Home />
+	},
+	{
+		path: "/statistics",
+		element: <Statistics />
+	},
+	{
+		path: "/asset",
+		element: <Asset />
+	},
+	{
+		path: "/setting",
+		element: <Setting />
+	}
+])
 
 export default function App(): ReactElement {
 	return (
-		<BrowserRouter>
-			<Suspense fallback={<LoadingOrError />}>
-				<Routes>
-					<Route path='/' element={<Gallery />} />
-					<Route path=':fruitName' element={<Details />} />
-				</Routes>
-			</Suspense>
-		</BrowserRouter>
+		<>
+			<RouterProvider router={router} />
+			<TabBar className='width- fixed bottom-4 w-full' safeArea onChange={path => void router.navigate(`/${path}`)}>
+				<TabBar.Item key='home' icon={<AppOutline />} title='首页' />
+				<TabBar.Item key='statistics' icon={<HistogramOutline />} title='统计' />
+				<TabBar.Item key='asset' icon={<BankcardOutline />} title='资产' />
+				<TabBar.Item key='setting' icon={<SetOutline />} title='设置' />
+			</TabBar>
+		</>
 	)
 }

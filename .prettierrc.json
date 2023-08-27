@@ -4,7 +4,7 @@
 	"bracketSpacing": true,
 	"jsxSingleQuote": true,
 	"plugins": ["./node_modules/prettier-plugin-tailwindcss/dist/index.mjs"],
-	"printWidth": 80,
+	"printWidth": 200,
 	"quoteProps": "as-needed",
 	"semi": false,
 	"singleQuote": false,

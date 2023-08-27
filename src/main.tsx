@@ -7,12 +7,11 @@ import "./index.css"
 
 registerSW()
 
-const MAX_RETRIES = 1
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			staleTime: Number.POSITIVE_INFINITY,
-			retry: MAX_RETRIES
+			retry: 1
 		}
 	}
 })

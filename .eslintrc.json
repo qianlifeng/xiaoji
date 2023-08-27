@@ -50,19 +50,12 @@
 			}
 		],
 		"no-void": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/padding-line-between-statements": "off",
 		"@typescript-eslint/prefer-enum-initializers": "off",
 		"@typescript-eslint/prefer-readonly-parameter-types": "off",
 		"@typescript-eslint/prefer-regexp-exec": "off",
-		"@typescript-eslint/no-magic-numbers": [
-			"error",
-			{
-				"ignoreEnums": true,
-				"ignore": [0],
-				"enforceConst": true,
-				"detectObjects": true
-			}
-		],
+		"@typescript-eslint/no-magic-numbers": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/init-declarations": "off",
 		"@typescript-eslint/no-confusing-void-expression": [
@@ -82,14 +75,7 @@
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
-				"devDependencies": [
-					"cypress.config.ts",
-					"vite.config.ts",
-					"src/setupTests.ts",
-					"src/testUtils.tsx",
-					"src/mocks/**",
-					"**/__tests__/*.{ts,tsx}"
-				]
+				"devDependencies": ["vite.config.ts", "src/setupTests.ts", "src/testUtils.tsx", "src/mocks/**", "**/__tests__/*.{ts,tsx}"]
 			}
 		],
 		"react/no-did-update-set-state": "off",
@@ -120,15 +106,6 @@
 			}
 		],
 		"react/no-unstable-nested-components": "error",
-		"react/jsx-handler-names": [
-			"error",
-			{
-				"eventHandlerPrefix": "on",
-				"eventHandlerPropPrefix": "on",
-				"checkLocalVariables": true,
-				"checkInlineFunction": true
-			}
-		],
 		"react/jsx-key": "error",
 		"react/jsx-no-bind": [
 			"error",
@@ -167,7 +144,7 @@
 			}
 		},
 		{
-			"files": ["vite.config.ts", "cypress.config.ts"],
+			"files": ["vite.config.ts"],
 			"parserOptions": {
 				"project": ["./tsconfig.node.json"]
 			}
