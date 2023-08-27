@@ -5,39 +5,33 @@ import { VitePWA } from "vite-plugin-pwa"
 import tsconfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig(({ mode }) => ({
-	server: {
-		https: true
-	},
-	plugins: [
-		tsconfigPaths(),
-		react(),
-		...(mode === "test"
-			? []
-			: [
-					eslintPlugin(),
-					VitePWA({
-						registerType: "autoUpdate",
-						devOptions: {
-							enabled: true
-						},
-						includeAssets: ["favicon.png", "robots.txt", "apple-touch-icon.png", "icons/*.svg", "fonts/*.woff2"],
-						manifest: {
-							theme_color: "#121212",
-							icons: [
-								{
-									src: "/android-chrome-192x192.png",
-									sizes: "192x192",
-									type: "image/png",
-									purpose: "any maskable"
-								},
-								{
-									src: "/android-chrome-512x512.png",
-									sizes: "512x512",
-									type: "image/png"
-								}
-							]
-						}
-					})
-			  ])
-	]
+  plugins: [
+    tsconfigPaths(),
+    react(),
+    ...(mode === "test"
+      ? []
+      : [
+          eslintPlugin(),
+          VitePWA({
+            registerType: "autoUpdate",
+            includeAssets: ["favicon.png", "robots.txt", "apple-touch-icon.png", "icons/*.svg", "fonts/*.woff2"],
+            manifest: {
+              theme_color: "#121212",
+              icons: [
+                {
+                  src: "/android-chrome-192x192.png",
+                  sizes: "192x192",
+                  type: "image/png",
+                  purpose: "any maskable"
+                },
+                {
+                  src: "/android-chrome-512x512.png",
+                  sizes: "512x512",
+                  type: "image/png"
+                }
+              ]
+            }
+          })
+        ])
+  ]
 }))
