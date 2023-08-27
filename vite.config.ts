@@ -3,14 +3,12 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import { VitePWA } from "vite-plugin-pwa"
 import tsconfigPaths from "vite-tsconfig-paths"
-import mkcert from "vite-plugin-mkcert"
 
 export default defineConfig(({ mode }) => ({
 	server: {
 		https: true
 	},
 	plugins: [
-		mkcert(),
 		tsconfigPaths(),
 		react(),
 		...(mode === "test"
