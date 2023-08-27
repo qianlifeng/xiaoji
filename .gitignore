@@ -7,3 +7,5 @@ dist-ssr
 coverage
 .nyc_output
 .stylelintcache
+dev-dist
+.idea
