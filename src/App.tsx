@@ -1,5 +1,5 @@
 import type { ReactElement } from "react"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createMemoryRouter, RouterProvider } from "react-router-dom"
 import Home from "./pages/Home"
 import Statistics from "./pages/Statistics"
 import Asset from "./pages/Asset"
@@ -8,7 +8,7 @@ import { BottomNavigation, BottomNavigationAction, Box, createTheme, CssBaseline
 import { BarChart, CreditCard, Settings } from "@mui/icons-material"
 import { useMemo, useState } from "react"
 
-const router = createBrowserRouter([
+const router = createMemoryRouter([
   {
     path: "/",
     element: <Home />
@@ -48,13 +48,12 @@ export default function App(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box className="h-[calc(100vh-56px)] overflow-auto">
+      <Box className="hide-scroll fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-0 right-0 top-0 overflow-auto">
         <RouterProvider router={router} />
       </Box>
 
-      <Box className="p fixed bottom-0 left-0 right-0 pb-[env(safe-area-inset-bottom)]">
+      <Box className="fixed bottom-0 left-0 right-0 pb-[env(safe-area-inset-bottom)]">
         <BottomNavigation
-          className="p-"
           showLabels
           value={activeTab}
           onChange={(event, path: string) => {
