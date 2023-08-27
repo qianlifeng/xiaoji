@@ -4,8 +4,8 @@ import Home from "./pages/Home"
 import Statistics from "./pages/Statistics"
 import Asset from "./pages/Asset"
 import Setting from "./pages/Setting"
-import { BottomNavigation, BottomNavigationAction, Box, createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material"
-import { BarChart, CreditCard, Settings } from "@mui/icons-material"
+import { BottomNavigation, BottomNavigationAction, Box, createTheme, CssBaseline, Fab, ThemeProvider, useMediaQuery } from "@mui/material"
+import { Add, BarChart, CreditCard, Receipt, Settings } from "@mui/icons-material"
 import { useMemo, useState } from "react"
 
 const router = createMemoryRouter([
@@ -48,7 +48,7 @@ export default function App(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box className="hide-scroll fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-0 right-0 top-0 overflow-auto">
+      <Box className="hide-scroll fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-0 right-0 top-0 overflow-auto p-4">
         <RouterProvider router={router} />
       </Box>
 
@@ -58,11 +58,27 @@ export default function App(): ReactElement {
           value={activeTab}
           onChange={(event, path: string) => {
             setActiveTab(path)
+            if (path === "add") {
+              alert("add")
+              return
+            }
+
             void router.navigate(`/${path}`)
           }}
         >
-          <BottomNavigationAction label="首页" icon={<BarChart />} value="home" />
+          <BottomNavigationAction label="账单" icon={<Receipt />} value="home" />
           <BottomNavigationAction label="统计" icon={<BarChart />} value="statistics" />
+          <BottomNavigationAction
+            disableRipple
+            label=""
+            showLabel={false}
+            icon={
+              <Fab color="primary" size="medium" className="!-mt-8">
+                <Add />
+              </Fab>
+            }
+            value="add"
+          />
           <BottomNavigationAction label="资产" icon={<CreditCard />} value="asset" />
           <BottomNavigationAction label="设置" icon={<Settings />} value="setting" />
         </BottomNavigation>
