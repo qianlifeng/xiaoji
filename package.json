@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "vite build",
 		"commit": "cz",
-		"dev": "vite --open",
+		"dev": "vite --open --host",
 		"prepare": "husky install",
 		"preview": "vite preview",
 		"format": "prettier -uw --cache --ignore-path .gitignore .",
@@ -17,9 +17,12 @@
 		"validate": "run-p lint test:ci test:e2e:headless"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.11.1",
+		"@emotion/styled": "^11.11.0",
+		"@fontsource/roboto": "^5.0.8",
+		"@mui/icons-material": "^5.14.6",
+		"@mui/material": "^5.14.6",
 		"@tanstack/react-query": "4.33.0",
-		"antd-mobile": "^5.32.1",
-		"antd-mobile-icons": "^0.3.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-router-dom": "6.15.0"

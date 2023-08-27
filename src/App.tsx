@@ -1,11 +1,12 @@
 import type { ReactElement } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { TabBar } from "antd-mobile"
-import { AppOutline, BankcardOutline, HistogramOutline, SetOutline } from "antd-mobile-icons"
 import Home from "./pages/Home"
 import Statistics from "./pages/Statistics"
 import Asset from "./pages/Asset"
 import Setting from "./pages/Setting"
+import { BottomNavigation, BottomNavigationAction, Box, createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material"
+import { BarChart, CreditCard, Settings } from "@mui/icons-material"
+import { useMemo, useState } from "react"
 
 const router = createBrowserRouter([
 	{
@@ -31,15 +32,42 @@ const router = createBrowserRouter([
 ])
 
 export default function App(): ReactElement {
+	const [activeTab, setActiveTab] = useState("home")
+	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
+
+	const theme = useMemo(
+		() =>
+			createTheme({
+				palette: {
+					mode: prefersDarkMode ? "dark" : "light"
+				}
+			}),
+		[prefersDarkMode]
+	)
+
 	return (
-		<>
-			<RouterProvider router={router} />
-			<TabBar className='width- fixed bottom-4 w-full' safeArea onChange={path => void router.navigate(`/${path}`)}>
-				<TabBar.Item key='home' icon={<AppOutline />} title='首页' />
-				<TabBar.Item key='statistics' icon={<HistogramOutline />} title='统计' />
-				<TabBar.Item key='asset' icon={<BankcardOutline />} title='资产' />
-				<TabBar.Item key='setting' icon={<SetOutline />} title='设置' />
-			</TabBar>
-		</>
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<Box className='h-[calc(100vh-56px)] overflow-auto'>
+				<RouterProvider router={router} />
+			</Box>
+
+			<Box className='fixed bottom-0 left-0 right-0'>
+				<BottomNavigation
+					className='p-'
+					showLabels
+					value={activeTab}
+					onChange={(event, path: string) => {
+						setActiveTab(path)
+						void router.navigate(`/${path}`)
+					}}
+				>
+					<BottomNavigationAction label='首页' icon={<BarChart />} value='home' />
+					<BottomNavigationAction label='统计' icon={<BarChart />} value='statistics' />
+					<BottomNavigationAction label='资产' icon={<CreditCard />} value='asset' />
+					<BottomNavigationAction label='设置' icon={<Settings />} value='setting' />
+				</BottomNavigation>
+			</Box>
+		</ThemeProvider>
 	)
 }
