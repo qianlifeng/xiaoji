@@ -69,7 +69,7 @@ export default function App(): ReactElement {
             label=""
             showLabel={false}
             icon={
-              <Fab color="primary" size="medium" className="!-mt-8">
+              <Fab color="primary" className="!-mt-8">
                 <Add />
               </Fab>
             }
