@@ -1,12 +1,12 @@
 import type { ReactElement } from "react"
+import { useState } from "react"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 import Home from "./pages/Home"
 import Statistics from "./pages/Statistics"
 import Asset from "./pages/Asset"
 import Setting from "./pages/Setting"
-import { BottomNavigation, BottomNavigationAction, Box, createTheme, CssBaseline, Fab, ThemeProvider, useMediaQuery } from "@mui/material"
+import { BottomNavigation, BottomNavigationAction, Box, createTheme, CssBaseline, Fab, ThemeProvider } from "@mui/material"
 import { Add, BarChart, CreditCard, Receipt, Settings } from "@mui/icons-material"
-import { useMemo, useState } from "react"
 
 const router = createMemoryRouter([
   {
@@ -33,22 +33,18 @@ const router = createMemoryRouter([
 
 export default function App(): ReactElement {
   const [activeTab, setActiveTab] = useState("home")
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? "dark" : "light"
-        }
-      }),
-    [prefersDarkMode]
-  )
+  const theme = createTheme({
+    palette: {
+      mode: "light"
+    }
+  })
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box className="hide-scroll fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-0 right-0 top-0 overflow-auto p-4">
+
+      <Box className="hide-scroll overflow fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-0 right-0 top-0 overflow-y-auto break-all">
         <RouterProvider router={router} />
       </Box>
 
