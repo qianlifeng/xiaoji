@@ -88,6 +88,7 @@
     "react/sort-comp": "off",
     "react/state-in-constructor": "off",
     "react/static-property-placement": "off",
+    "unicorn/consistent-function-scoping": "off",
     "react/boolean-prop-naming": [
       "error",
       {
